@@ -7,7 +7,7 @@ import os, time, sys
 
 month = datetime.today().month
 
-def get_details(username, password)
+def get_details(username, password, linux_popup=False):
     try:
         # starting session 
         login_url = "https://thehub.absolutdata.com/pm/Login.aspx"
@@ -64,12 +64,18 @@ def get_details(username, password)
         d = {"AttendanceDate": "Attendance of Date: " + response[-1]['Attendance of Date'],
             "EmployeeName": "Employee Name: " + response[-1]['Employee Name'],
             "TimeIn": "Time In: " +  response[-1]["Time In"],
-            "TotalTimeInOffice": "Total Time in Office: " + total_time_in_office}
-        print d
-
-        # for linux notification
-        command = '''notify-send  "Employee Name: %s" "%s"''' %(response[-1]['Employee Name'],d["TotalTimeInOffice"])
-        # print command
-        print os.system(command)
+            "TotalTimeInOffice": "Total Time in Office: " + total_time_in_office,
+            "datetime":enterdatetime_obj.isoformat()}
+        if linux_popup:
+            # for linux notification
+            command = '''notify-send  "Employee Name: %s" "%s"''' %(response[-1]['Employee Name'],d["TotalTimeInOffice"])
+            print os.system(command)
+        else:
+            return d
     except:
         pass
+
+
+
+if __name__ == "__main__":
+    get_details()
