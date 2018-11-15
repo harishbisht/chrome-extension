@@ -8,8 +8,8 @@
     },
     "permissions": [
 				    "storage",
-				    "https://*/* ",
-				    "http://*/* "
+            "activeTab",
+				    "https://*.herokuapp.com/*"
 					],
     "background": {
        "scripts": [
