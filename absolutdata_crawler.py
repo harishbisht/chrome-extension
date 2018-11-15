@@ -7,7 +7,7 @@ import os, time, sys
 
 month = datetime.today().month
 
-def get_details(username, password, linux_popup=False):
+def get_details(userid, password, only_validate=False, linux_popup=False):
     try:
         # starting session 
         login_url = "https://thehub.absolutdata.com/pm/Login.aspx"
@@ -19,7 +19,7 @@ def get_details(username, password, linux_popup=False):
                     "__VIEWSTATE":"/wEPDwUKLTI0NjIxNzc4OGRknVMyEQdHtdZMZ47xqzivNvUS9JKafYtDPFpI6JtlpoU=",
                     "__VIEWSTATEGENERATOR":"4BB762C6",
                     "password":password,
-                    "username":username}
+                    "username":userid}
 
         headers = {
             'origin': "https://thehub.absolutdata.com",
@@ -32,7 +32,8 @@ def get_details(username, password, linux_popup=False):
             }
         payload = urlencode(payload)
         response = s.post(login_url, data=payload, headers=headers)
-
+        if only_validate:
+            return {"validated": response.cookies.values() == []}
         # request to attendance page
         url = "https://thehub.absolutdata.com/pm/Handlers/Attendance.ashx"
         payload = "Month=%s&todo=GetEmployeeAttendance"%(month)
@@ -73,7 +74,8 @@ def get_details(username, password, linux_popup=False):
         else:
             return d
     except:
-        pass
+        return {"err":"incorrect credentials"}
+        
 
 
 

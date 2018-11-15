@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/", methods=["POST"])
 def homepage():
     json_data = json.loads(request.data)
-    data = absolutdata_crawler.get_details(json_data['userid'],json_data['password'])
+    data = absolutdata_crawler.get_details(**json_data)
     response = app.response_class(
         response=json.dumps(data),
         mimetype='application/json'
