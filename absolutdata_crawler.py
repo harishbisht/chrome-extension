@@ -59,8 +59,7 @@ def get_details(userid, password, only_validate=False, linux_popup=False):
         # time before fingerprint log
         if response[-1]["Time In"]=="NA":
             return {"datetime":"NA"}
-        else:
-            enterdatetime = response[-1]["Date In"] + "T" + response[-1]["Time In"]
+        enterdatetime = response[-1]["Date In"] + "T" + response[-1]["Time In"]
         enterdatetime_obj = datetime.strptime(enterdatetime, "%d-%m-%YT%H:%M:%S")
         total_time_in_office = str(datetime.now() - enterdatetime_obj)
         total_time_in_office = total_time_in_office.split(".")[0]
@@ -84,4 +83,4 @@ def get_details(userid, password, only_validate=False, linux_popup=False):
 
 
 if __name__ == "__main__":
-    get_details("ADT1580","EC2QiSOqq")
+    pass
