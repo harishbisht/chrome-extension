@@ -9,7 +9,7 @@
     "permissions": [
 				    "storage",
             "activeTab",
-				    "https://*.herokuapp.com/*"
+				    "https://tornado.herokuapp.com/*"
 					],
     "background": {
        "scripts": [
