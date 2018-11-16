@@ -145,9 +145,10 @@ function authenticate_user() {
   var password = document.getElementById("password").value;
 
   // cleaning old storage if any
-  chrome.storage.sync.clear()
+  
   // Check that there's some code there.
   if (userid && password) {
+    chrome.storage.sync.clear()
     check_connection(userid, password);
     return 1;
   } else {
