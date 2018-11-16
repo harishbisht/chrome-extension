@@ -53,9 +53,9 @@ function main() {
       chrome.storage.sync.get("is_credentials_valid", function (data) {
         console.log(data)
         if (typeof data.is_credentials_valid === 'undefined') {
-          document.getElementById('txt').innerHTML = "click on settings and enter your ADT ID and password"
+          document.getElementById('txt').innerHTML = "click on new credentials and enter your ADT ID and password"
         } else if (data.is_credentials_valid == "false") {
-          document.getElementById('txt').innerHTML = "click on settings and update your ADT ID and password"
+          document.getElementById('txt').innerHTML = "click on new credentials and update your ADT ID and password"
         } else if (data.is_credentials_valid == "true") {
           chrome.storage.sync.get(null, function (data) {
             check_connection(data.userid, data.password);
@@ -160,7 +160,7 @@ $(document).ready(function () {
   // starting point of app
   main();
   $("#button").bind("click", function (event) {
-    document.getElementById('txt').innerHTML = "Wait validating your credentials..."
+    document.getElementById('txt').innerHTML = "Wait. validating your credentials..."
     authenticate_user()
   });
 });
