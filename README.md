@@ -19,3 +19,5 @@ $ heroku login
 $ heroku create <appname>
 $ git push heroku master
 ```
+
+Download [link](https://chrome.google.com/webstore/detail/absolutdata-office-hour-a/ckhngljgachjhebhfonjcjhpocgajbig) of extension
