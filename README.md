@@ -1,4 +1,4 @@
-# Absolutedata office hour chrome-extension
+# Absolutdata office hour chrome-extension
 
 ## Build Instructions
 1. Clone the code https://github.com/harishbisht/chrome-extension
