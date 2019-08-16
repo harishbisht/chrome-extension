@@ -15,21 +15,21 @@ def get_details(userid, password, only_validate=False, linux_popup=False):
         s.get(login_url)
 
         payload = {"Button1":"Submit",
-                    "__EVENTVALIDATION":"/wEdAAWovda5xpO4Z6c1FPk8GQDEKhoCyVdJtLIis5AgYZ/RYe4sciJO3Hoc68xTFtZGQEjN+DvxnwFeFeJ9MIBWR693Y4gqsEuo3McwZ5PSVhdsIPHAa1ZHNa3y9CgeZPQtK8x6zCAxcSRZTkabPcIf43v+",
-                    "__VIEWSTATE":"/wEPDwUKLTI0NjIxNzc4OGRknVMyEQdHtdZMZ47xqzivNvUS9JKafYtDPFpI6JtlpoU=",
+                    "__EVENTVALIDATION":"/wEdAAVX1op0hds6HAPwBwGavcqqKhoCyVdJtLIis5AgYZ/RYe4sciJO3Hoc68xTFtZGQEjN+DvxnwFeFeJ9MIBWR693Y4gqsEuo3McwZ5PSVhdsIHyP1ZPIkpMG395DAkVcwzzsiQWbHKEUkKg5yzAPPfu5",
+                    "__VIEWSTATE":"/wEPDwUJLTM4NTk4MzY5ZGQdsp5NfDxEw/jzvISbIAModNeFzAoMZdsndrQBwKXCTw==",
                     "__VIEWSTATEGENERATOR":"4BB762C6",
                     "password":password,
                     "username":userid}
 
         headers = {
+            'accept': "application/json, text/javascript, */*; q=0.01",
             'origin': "https://thehub.absolutdata.com",
-            'upgrade-insecure-requests': "1",
+            'x-requested-with': "XMLHttpRequest",
+            'user-agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
             'content-type': "application/x-www-form-urlencoded",
-            'user-agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36",
-            'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-            'accept-encoding': "gzip, deflate, br",
-            'accept-language': "en-US,en;q=0.9,gu;q=0.8,hi;q=0.7",
+            'cache-control': "no-cache",
             }
+
         payload = urlencode(payload)
         response = s.post(login_url, data=payload, headers=headers)
         if only_validate:
@@ -50,6 +50,7 @@ def get_details(userid, password, only_validate=False, linux_popup=False):
             'cache-control': "no-cache",
             }
         response = json.loads(s.post(url, data=payload, headers=headers).text)
+        
         # print response[-1]
         # print "Attendance of Date: " + response[-1]['Attendance of Date']
         # print "Employee Name: " + response[-1]['Employee Name']
@@ -76,7 +77,8 @@ def get_details(userid, password, only_validate=False, linux_popup=False):
             print os.system(command)
         else:
             return d
-    except:
+    except Exception, e:
+        print(e)
         return {"err":"incorrect credentials"}
         
 
